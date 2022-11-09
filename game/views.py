@@ -109,28 +109,28 @@ def adventure_home(request):
     else:
         # [코드 수정] Character 모델 중 id가 1인 캐릭터 객체를 가져옴
         # [코드 수정] None을 지우고 작성
-        character = None
+        character = Character.objecter.objects.get(id=1)
         context = {
             'character': character,
         }
         # [코드 수정] character의 weapon 필드에 아무것도 저장되어 있지 않은 경우
         # [코드 수정] None을 지우고 작성
-        if None:
+        if character.weapon == None:
             # [코드 수정] 'game/adventure_new.html'로 이동하도록 코드 작성
             # [코드 수정] None을 지우고 작성
-            return render(request, None, context)
+            return render(request,'game/adventure_new.html' , context)
     return render(request, 'game/adventure_home.html', context)
 
 # 캐릭터에게 랜덤으로 무기 장착
 def weapon_get(request):
     # [코드 수정] Character 모델 중 id가 1인 캐릭터 객체를 가져옴
     # [코드 수정] None을 지우고 작성
-    character = None
+    character = Character.objecter.objects.get(id=1)
     
     weapons = Weapon.objects.all()
     # [코드 수정] random 모듈의 choice 함수를 이용하여 selected_weapon 변수에 저장
     # [코드 수정] None을 지우고 작성
-    selected_weapon = None
+    selected_weapon = choice(weapons)
     
     character.weapon = selected_weapon
     character.save()

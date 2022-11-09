@@ -16,14 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 # [코드 작성] page 앱 폴더의 views.py 가져오기
-
+from page import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('page/', include('page.urls')),
     path('game/', include('game.urls')),
     # [코드 작성] account 앱의 urls.py 연결
-    
+    path('account/', include('account.urls')),
     # [코드 작성] http://127.0.0.1:8000/ 경로로 접근할 때 index 페이지로 바로 접근할 수 있도록 경로 설정
-    
+    path('',views.index),
 ]

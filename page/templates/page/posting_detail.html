@@ -42,7 +42,6 @@
       <tr>
         <th colspan="2">댓글 목록</th>
       </tr>
-      {% if user.is_authenticated %}
         <tr>
           <td class="posting__comment__create" colspan="2">
             <form action="" method="post">
@@ -54,7 +53,6 @@
             </form>
           </td>
         </tr>
-      {% endif %}
       {% for comment in comments %}
         <tr>
           <td class="posting__comment__content">
@@ -62,7 +60,7 @@
           </td>
           <td class="posting__comment__delete" rowspan="2">
             <!-- [코드 추가] POST 방식으로 댓글 삭제 후 action을 이용해 url 이름이 comment_delete인 url로 이동 -->
-            <form action="" method="post" onsubmit="return contentDelete()">
+            <form action="{% url 'page:comment_delete' posting_id=posting.id comment_id=comment.id %}" method="post" onsubmit="return contentDelete()">
               {% csrf_token %}
               <input type="submit" value="x">
             </form>
